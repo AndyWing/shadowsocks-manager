@@ -6,15 +6,10 @@ install: npm install
 script:
   - npm run build
 
-jobs:
-  include:
-    - stage: npm release
-      node_js: "10"
-      script: npm run build
-      deploy:
-        provider: npm
-        email: "$NPM_EMAIL"
-        api_key: "$NPM_TOKEN"
-        skip_cleanup: true
-        on:
-          branch: travis
+deploy:
+  provider: npm
+  email: "$NPM_EMAIL"
+  api_key: "$NPM_TOKEN"
+  # skip_cleanup: true
+  on:
+    branch: travis
